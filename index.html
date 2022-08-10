@@ -6,13 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemeGen</title>
-    <link rel="stykesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
-    <section class="gallery"></section>
-    <section class="meme-editor"></section>
-    <script src="js/main.js"></script>
+    <section class="gallery">
+        <header>
+            <div class="logo">MemeGen</div>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li>Gallery</li>
+                    <li>Memes</li>
+                    <li>About</li>
+                </ul>
+            </nav>
+        </header>
+        <main class="images-container"></main>
+    </section>
+    <section class="meme-editor" hidden>
+        <div class="control-box">
+            <input type="text" name="text-line-input" placeholder="Enter text here"
+                oninput="onSetLineText(this.value)" />
+            <button class="btn" onclick="onIncreaseFontSize()">A+</button>
+            <button class="btn" onclick="onDecreaseFontSize()">A-</button>
+            <button class="btn" onclick="onSwitchLine()">Switch line</button>
+            <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
+        </div>
+        <canvas width="400" height="400" class="meme-canvas"></canvas>
+    </section>
+    <script src="js/services.js/gallery.service.js"></script>
+    <script src="js/services.js/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>
