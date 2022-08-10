@@ -3,21 +3,27 @@
 const gElCanvas = document.querySelector('.meme-canvas')
 const gCtx = gElCanvas.getContext('2d')
 
+resizeCanvas()
 renderMeme()
 
 function renderMeme() {
+    // addListeners()
     const meme = getMeme()
     const img = getImgById(meme.selectedImgId)
     drawMeme(img.url, meme.lines)
 }
+
+// function addListeners() {
+//     window.addEventListener('resize', resizeCanvas)
+// }
 
 function drawMeme(imgUrl, textLines) {
     const img = new Image()
     img.src = imgUrl
     img.onload = () => {
         drawImg(img)
-        highlightSelectedLine()
         drawTextLines(textLines)
+        highlightSelectedLine()
     }
 }
 
@@ -105,4 +111,11 @@ function onSwitchLine() {
     elTextInput.value = selectedLine.text
 }
 
+
+function resizeCanvas() {
+    const elCanvasContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elCanvasContainer.offsetWidth
+    gElCanvas.height = elCanvasContainer.offsetHeight
+    renderMeme()
+}
 

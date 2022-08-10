@@ -10,17 +10,17 @@
 </head>
 
 <body>
+    <header>
+        <div class="logo">MemeGen</div>
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li>Gallery</li>
+                <li>Memes</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
     <section class="gallery">
-        <header>
-            <div class="logo">MemeGen</div>
-            <nav class="main-nav">
-                <ul class="main-nav-list">
-                    <li>Gallery</li>
-                    <li>Memes</li>
-                    <li>About</li>
-                </ul>
-            </nav>
-        </header>
         <main class="images-container"></main>
     </section>
     <section class="meme-editor" hidden>
@@ -32,7 +32,9 @@
             <button class="btn" onclick="onSwitchLine()">Switch line</button>
             <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
         </div>
-        <canvas width="400" height="400" class="meme-canvas"></canvas>
+        <div class="canvas-container">
+            <canvas width="400" height="400" class="meme-canvas"></canvas>
+        </div>
     </section>
     <script src="js/services.js/gallery.service.js"></script>
     <script src="js/services.js/meme.service.js"></script>

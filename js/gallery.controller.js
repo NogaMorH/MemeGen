@@ -20,4 +20,5 @@ function openMemeEditor() {
     const elMemeEditor = document.querySelector('.meme-editor')
     elGallery.hidden = true
     elMemeEditor.hidden = false
+    resizeCanvas()
 }
