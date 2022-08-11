@@ -2,3 +2,7 @@
     margin-right: 25px;
     margin-left: 25px;
 }
+
+body>section {
+    flex-grow: 1;
+}

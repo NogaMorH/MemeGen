@@ -1,0 +1,42 @@
+.meme-editor {
+    background-color: var(--clr2);
+}
+
+.meme-container {
+    width: 60%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 10%;
+    background-color: var(--clr2);
+    font-size: 0.875rem;
+}
+
+.meme-container .small-btn {
+    font-size: inherit;
+    line-height: 1.142857142857143;
+    background-color: inherit;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+    padding-top: 25px;
+    margin-inline-end: auto;
+    padding-left: 1.571428571428571em;
+    position: relative;
+}
+
+.meme-container .small-btn::before {
+    content: "<";
+    position: absolute;
+    left: 0px;
+    font-size: inherit;
+}
+
+.meme-container .canvas-container {
+    justify-self: center;
+    align-self: center;
+    height: 600px;
+    width: 600px;
+}
+
+.meme-container canvas {
+    border-radius: 10px;
+}

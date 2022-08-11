@@ -1,9 +1,11 @@
 @import "setup/vars.css";
 @import "setup/typography.css";
 
-@import "basic/helpers.css";
 @import "basic/base.css";
 @import "basic/Layout.css";
+@import "basic/helpers.css";
 
 @import "components/header.css";
-@import "components/canvas.css";
+@import "components/gallery.css";
+@import "components/meme-container.css";
+@import "components/control-box.css";

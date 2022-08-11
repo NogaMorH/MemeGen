@@ -1,0 +1,59 @@
+.control-box-container {
+    width: 40%;
+    background-color: var(--clr7);
+}
+
+.control-box {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.control-box .control-box-header {
+    font-family: roboto-medium, sans-serif;
+    font-size: 1.5rem;
+    color: var(--clr6);
+    line-height: 1.166666666666667;
+    margin-top: 30px;
+}
+
+.control-box .control-btn {
+    border: none;
+    background-color: inherit;
+}
+
+.control-box .text-editor {
+    background-color: var(--clr2);
+    border: 1px solid var(--clr9);
+    border-radius: 10px;
+}
+
+.control-box .text-editor-btns {
+    border-bottom: 1px solid var(--clr9);
+}
+
+.control-box .control-box-header .control-btn {
+    width: 40px;
+}
+
+.control-box .text-editor .control-btn {
+    width: 50px;
+    margin: 6px;
+}
+
+.control-box .text-editor-btns>* {
+    margin: 4px;
+}
+
+.control-box input[name="text-line-input"] {
+    border: none;
+    color: var(--clr8);
+    font-size: 1.2rem;
+    line-height: 1.125;
+    padding: 25px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.control-box input[name="text-line-input"]:focus-visible {
+    outline: none;
+}

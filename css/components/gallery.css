@@ -1,0 +1,19 @@
+.gallery {
+    background-color: var(--clr4);
+}
+
+.gallery .images-container {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 25px;
+    row-gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery .images-container>img {
+    cursor: pointer;
+}
+
+.gallery .images-container>img:hover {
+    outline: 3px solid var(--clr1);
+    opacity: .8;
+}

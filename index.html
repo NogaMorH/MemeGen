@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body onload="init()">
-    <header>
-        <div class="header-content main-layout">
+<body class="flex" onload="init()">
+    <header class="main-header">
+        <div class="header-content main-layout flex space-between">
             <img src="img/LOGO.png" class="logo" alt="MemeGen logo" />
             <nav class="main-nav">
-                <ul class="main-nav-list clean-list">
+                <ul class="main-nav-list clean-list flex">
                     <li><button class="btn nav-btn">Gallery</button></li>
                     <li><button class="btn nav-btn">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
@@ -22,20 +22,38 @@
             </nav>
         </div>
     </header>
-    <section class="gallery">
-        <main class="images-container main-layout"></main>
+    <section class="gallery" hidden>
+        <main class="images-container main-layout grid"></main>
     </section>
-    <section class="meme-editor" hidden>
-        <div class="control-box">
-            <input type="text" name="text-line-input" placeholder="Enter text here"
-                oninput="onSetLineText(this.value)" />
-            <button class="btn" onclick="onIncreaseFontSize()">A+</button>
-            <button class="btn" onclick="onDecreaseFontSize()">A-</button>
-            <button class="btn" onclick="onSwitchLine()">Switch line</button>
-            <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
+    <section class="meme-editor main-layout" hidden>
+        <div class="meme-container grid">
+            <button class="btn small-btn">Back to gallery</button>
+            <div class="canvas-container">
+                <canvas width="400" height="400" class="meme-canvas"></canvas>
+            </div>
         </div>
-        <div class="canvas-container">
-            <canvas width="400" height="400" class="meme-canvas"></canvas>
+        <div class="control-box-container">
+            <div class="control-box">
+                <header class="control-box-header flex space-between">
+                    <h3 class="control-box-header">Edit text lines</h3>
+                    <button class="btn control-btn" onclick="onSwitchLine()">
+                        <img src="icons/switch-line.png" alt="switch line" />
+                    </button>
+                </header>
+                <div class="text-editor">
+                    <div class="text-editor-btns">
+                        <button class="btn control-btn" onclick="onDecreaseFontSize()">
+                            <img src="icons/decrease font-icon.png" alt="decrease font size" />
+                        </button>
+                        <button class="btn control-btn" onclick="onIncreaseFontSize()">
+                            <img src="icons/increase font-icon.png" alt="increase font size" />
+                        </button>
+                        <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
+                    </div>
+                    <input type="text" name="text-line-input" placeholder="Edit text line"
+                        oninput="onSetLineText(this.value)" />
+                </div>
+            </div>
         </div>
     </section>
     <script src="js/services.js/util.service.js"></script>

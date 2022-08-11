@@ -8,8 +8,19 @@ function openMemeEditor() {
     const elMemeEditor = document.querySelector('.meme-editor')
     elGallery.hidden = true
     elMemeEditor.hidden = false
+    elMemeEditor.classList.add('flex')
     resizeCanvas()
     renderMeme()
+}
+
+function closeMemeEditor() {
+    console.log('close meme editor')
+    const elGallery = document.querySelector('.gallery')
+    const elMemeEditor = document.querySelector('.meme-editor')
+    elGallery.hidden = false
+    elMemeEditor.hidden = true
+    elMemeEditor.classList.remove('flex')
+    console.log('elMemeEditor.hidden:', elMemeEditor.hidden)
 }
 
 function renderMeme() {
@@ -39,6 +50,7 @@ function drawImg(img) {
 }
 
 function drawTextLines(textLines) {
+    const meme = getMeme()
     const font = new FontFace('impact', 'url(../../fonts/impact/impact.ttf)')
     font.load().then(() => {
         document.fonts.add(font)
@@ -46,12 +58,12 @@ function drawTextLines(textLines) {
             const { text, size, align, color } = textLine
             const lineHeight = setLineHeight(idx)
             drawText(text, gElCanvas.width / 2, lineHeight, size, align, color)
-            highlightSelectedLine()
+            if (idx === meme.selectedLineIdx) highlightSelectedLine()
         })
     })
 }
 
-function drawText(text, x, y, fontSize = '40', textAlign = 'center', color = 'black') {
+function drawText(text, x, y, fontSize = '50', textAlign = 'center', color = 'black') {
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = textAlign
@@ -86,7 +98,7 @@ function drawTextBoxBorder(x, y, width, height) {
 }
 
 function setLineHeight(lineIdx) {
-    let textLineHeight = null
+    var textLineHeight
     if (lineIdx === 0) return textLineHeight = 50
     else if (lineIdx === 1) return textLineHeight = gElCanvas.height - 50
     else return textLineHeight = gElCanvas.height / 2
@@ -127,4 +139,8 @@ function resizeCanvas() {
     gElCanvas.height = elCanvasContainer.offsetHeight
     renderMeme()
 }
+
+// function clearCanvas() {
+//     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+// }
 

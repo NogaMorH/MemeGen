@@ -2,6 +2,7 @@
 
 
 function init() {
+    closeMemeEditor()
     renderGallery()
 }
 

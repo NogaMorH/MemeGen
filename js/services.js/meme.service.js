@@ -5,13 +5,13 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [{
         text: 'Enter text here',
-        size: 40,
+        size: 50,
         align: 'center',
         color: 'red'
     },
     {
         text: 'I am Trump',
-        size: 40,
+        size: 50,
         align: 'center',
         color: 'blue'
     }]

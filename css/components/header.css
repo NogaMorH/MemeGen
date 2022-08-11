@@ -1,14 +1,36 @@
-header {
+.main-header {
     background-color: var(--clr2);
     box-shadow: 0px 1px 0px var(--clr5);
+    z-index: 10;
 }
 
-header .logo {
+.header-content {
+    align-items: center;
+}
+
+.main-header .logo {
     width: 152px;
     padding: 9px 20px 9px 0px;
 }
 
-.nav-btn {
+.main-header .main-nav-list>li:not(:last-child) {
+    margin-inline-end: 50px;
+}
+
+.main-header .nav-btn {
     background-color: inherit;
     border: none;
+    font-family: roboto-medium, sans-serif;
+    color: inherit;
+    line-height: 1.1;
+    line-height: 1.171875;
+    font-size: 1rem;
+    padding: 0;
+    margin: 15px 0px;
+    transition: color .2s;
+}
+
+
+.main-header .nav-btn:hover {
+    color: var(--clr1);
 }
