@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: roboto-medium, sans-serif;
+    color: var(--clr3);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+img {
+    width: 100%;
+}
+
+.btn {
+    cursor: pointer;
+}

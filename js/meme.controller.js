@@ -3,8 +3,14 @@
 const gElCanvas = document.querySelector('.meme-canvas')
 const gCtx = gElCanvas.getContext('2d')
 
-resizeCanvas()
-renderMeme()
+function openMemeEditor() {
+    const elGallery = document.querySelector('.gallery')
+    const elMemeEditor = document.querySelector('.meme-editor')
+    elGallery.hidden = true
+    elMemeEditor.hidden = false
+    resizeCanvas()
+    renderMeme()
+}
 
 function renderMeme() {
     // addListeners()
@@ -23,7 +29,6 @@ function drawMeme(imgUrl, textLines) {
     img.onload = () => {
         drawImg(img)
         drawTextLines(textLines)
-        highlightSelectedLine()
     }
 }
 
@@ -34,10 +39,15 @@ function drawImg(img) {
 }
 
 function drawTextLines(textLines) {
-    textLines.forEach((textLine, idx) => {
-        const { text, size, align, color } = textLine
-        const lineHeight = setLineHeight(idx)
-        drawText(text, gElCanvas.width / 2, lineHeight, size, align, color)
+    const font = new FontFace('impact', 'url(../../fonts/impact/impact.ttf)')
+    font.load().then(() => {
+        document.fonts.add(font)
+        textLines.forEach((textLine, idx) => {
+            const { text, size, align, color } = textLine
+            const lineHeight = setLineHeight(idx)
+            drawText(text, gElCanvas.width / 2, lineHeight, size, align, color)
+            highlightSelectedLine()
+        })
     })
 }
 
@@ -46,7 +56,7 @@ function drawText(text, x, y, fontSize = '40', textAlign = 'center', color = 'bl
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = textAlign
     gCtx.lineWidth = 2
-    gCtx.font = `${fontSize}px Impact`
+    gCtx.font = `${fontSize}px impact, sans-serif`
     gCtx.fillStyle = 'white'
     gCtx.fillText(text, x, y)
     gCtx.strokeStyle = `${color}`
@@ -76,7 +86,7 @@ function drawTextBoxBorder(x, y, width, height) {
 }
 
 function setLineHeight(lineIdx) {
-    let textLineHeight
+    let textLineHeight = null
     if (lineIdx === 0) return textLineHeight = 50
     else if (lineIdx === 1) return textLineHeight = gElCanvas.height - 50
     else return textLineHeight = gElCanvas.height / 2
@@ -110,7 +120,6 @@ function onSwitchLine() {
     const elTextInput = document.querySelector('input[name="text-line-input"]')
     elTextInput.value = selectedLine.text
 }
-
 
 function resizeCanvas() {
     const elCanvasContainer = document.querySelector('.canvas-container')

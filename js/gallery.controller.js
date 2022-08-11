@@ -1,6 +1,9 @@
 'use strict'
 
-renderGallery()
+
+function init() {
+    renderGallery()
+}
 
 function renderGallery() {
     const elImagesContainer = document.querySelector('.images-container')
@@ -12,13 +15,5 @@ function renderGallery() {
 function onImgSelect(imgId) {
     setImg(imgId)
     openMemeEditor()
-    renderMeme()
 }
 
-function openMemeEditor() {
-    const elGallery = document.querySelector('.gallery')
-    const elMemeEditor = document.querySelector('.meme-editor')
-    elGallery.hidden = true
-    elMemeEditor.hidden = false
-    resizeCanvas()
-}

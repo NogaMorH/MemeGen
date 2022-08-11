@@ -1,0 +1,14 @@
+header {
+    background-color: var(--clr2);
+    box-shadow: 0px 1px 0px var(--clr5);
+}
+
+header .logo {
+    width: 152px;
+    padding: 9px 20px 9px 0px;
+}
+
+.nav-btn {
+    background-color: inherit;
+    border: none;
+}

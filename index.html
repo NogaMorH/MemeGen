@@ -6,22 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemeGen</title>
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body>
+<body onload="init()">
     <header>
-        <div class="logo">MemeGen</div>
-        <nav class="main-nav">
-            <ul class="main-nav-list">
-                <li>Gallery</li>
-                <li>Memes</li>
-                <li>About</li>
-            </ul>
-        </nav>
+        <div class="header-content main-layout">
+            <img src="img/LOGO.png" class="logo" alt="MemeGen logo" />
+            <nav class="main-nav">
+                <ul class="main-nav-list clean-list">
+                    <li><button class="btn nav-btn">Gallery</button></li>
+                    <li><button class="btn nav-btn">Memes</button></li>
+                    <li><button class="btn nav-btn">About</button></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <section class="gallery">
-        <main class="images-container"></main>
+        <main class="images-container main-layout"></main>
     </section>
     <section class="meme-editor" hidden>
         <div class="control-box">
@@ -36,6 +38,7 @@
             <canvas width="400" height="400" class="meme-canvas"></canvas>
         </div>
     </section>
+    <script src="js/services.js/util.service.js"></script>
     <script src="js/services.js/gallery.service.js"></script>
     <script src="js/services.js/meme.service.js"></script>
     <script src="js/gallery.controller.js"></script>
