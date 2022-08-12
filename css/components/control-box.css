@@ -1,11 +1,9 @@
 .control-box-container {
     background-color: var(--clr7);
-    height: 350px;
 }
 
 .control-box {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin: 0px 30px 50px;
 }
 
 .control-box .control-box-header {
@@ -13,7 +11,11 @@
     font-size: 1.5rem;
     color: var(--clr6);
     line-height: 1.166666666666667;
-    margin-top: 30px;
+    margin-top: 15px;
+}
+
+.control-box .line-btns {
+    align-items: center;
 }
 
 .control-box .control-btn {
@@ -62,25 +64,13 @@
     outline: none;
 }
 
-@media (max-width: 450px) {
-    .control-box-container {
-        width: 100%;
-    }
-
-    .control-box .control-box-header {
-        margin-bottom: 25px;
-    }
-}
-
-/* @media (min-width: 450px) {
-    .control-box-container {
-        height: 380px;
-    }
-} */
-
 @media (min-width: 800px) {
     .control-box-container {
         width: 40%;
         height: auto;
+    }
+
+    .control-box .control-box-header {
+        margin-top: 15px;
     }
 }

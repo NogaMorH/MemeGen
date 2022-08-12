@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="flex" onload="init()">
+<body class="flex" onload="onInitGallery()">
     <header class="main-header">
         <div class="header-content main-layout flex space-between">
             <img src="img/LOGO.png" class="logo" alt="MemeGen logo" />
@@ -38,9 +38,14 @@
             <div class="control-box">
                 <header class="control-box-header flex space-between">
                     <h3 class="control-box-header">Edit text lines</h3>
-                    <button class="btn control-btn" onclick="onSwitchLine()">
-                        <img src="icons/switch-line.png" alt="switch line" />
-                    </button>
+                    <div class="line-btns flex">
+                        <button class="btn control-btn" onclick="onAddLine()">
+                            <img src="icons/add.png" alt="add line" />
+                        </button>
+                        <button class="btn control-btn" onclick="onSwitchLine()">
+                            <img src="icons/switch-line.png" alt="switch line" />
+                        </button>
+                    </div>
                 </header>
                 <div class="text-editor">
                     <div class="text-editor-btns">
@@ -51,6 +56,15 @@
                             <img src="icons/increase font-icon.png" alt="increase font size" />
                         </button>
                         <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
+                        <button class="btn control-btn">
+                            <img src="icons/align-to-left.png" alt="align to left" onclick="onAlignLeft()" />
+                        </button>
+                        <button class="btn control-btn">
+                            <img src="icons/center-text-alignment.png" alt="center text" onclick="onCenterText()" />
+                        </button>
+                        <button class="btn control-btn">
+                            <img src="icons/align-to-right.png" alt="align to right" onclick="onAlignRight()" />
+                        </button>
                     </div>
                     <input type="text" name="text-line-input" placeholder="Edit text line"
                         oninput="onSetLineText(this.value)" />

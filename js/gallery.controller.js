@@ -1,7 +1,7 @@
 'use strict'
 
 
-function init() {
+function onInitGallery() {
     closeMemeEditor()
     renderGallery()
 }
