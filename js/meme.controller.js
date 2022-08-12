@@ -10,29 +10,31 @@ function openMemeEditor() {
     elMemeEditor.hidden = false
     elMemeEditor.classList.add('flex')
     resizeCanvas()
+    addListeners()
     renderMeme()
 }
 
+function onCloseMemeEditor() {
+    closeMemeEditor()
+}
+
 function closeMemeEditor() {
-    console.log('close meme editor')
     const elGallery = document.querySelector('.gallery')
     const elMemeEditor = document.querySelector('.meme-editor')
     elGallery.hidden = false
     elMemeEditor.hidden = true
     elMemeEditor.classList.remove('flex')
-    console.log('elMemeEditor.hidden:', elMemeEditor.hidden)
 }
 
 function renderMeme() {
-    // addListeners()
     const meme = getMeme()
     const img = getImgById(meme.selectedImgId)
     drawMeme(img.url, meme.lines)
 }
 
-// function addListeners() {
-//     window.addEventListener('resize', resizeCanvas)
-// }
+function addListeners() {
+    window.addEventListener('resize', resizeCanvas)
+}
 
 function drawMeme(imgUrl, textLines) {
     const img = new Image()
@@ -99,8 +101,8 @@ function drawTextBoxBorder(x, y, width, height) {
 
 function setLineHeight(lineIdx) {
     var textLineHeight
-    if (lineIdx === 0) return textLineHeight = 50
-    else if (lineIdx === 1) return textLineHeight = gElCanvas.height - 50
+    if (lineIdx === 0) return textLineHeight = 70
+    else if (lineIdx === 1) return textLineHeight = gElCanvas.height - 70
     else return textLineHeight = gElCanvas.height / 2
 }
 
@@ -134,7 +136,12 @@ function onSwitchLine() {
 }
 
 function resizeCanvas() {
+    console.log('resize')
     const elCanvasContainer = document.querySelector('.canvas-container')
+    console.log('elCanvasContainer:', elCanvasContainer)
+    console.log('gElCanvas:', gElCanvas)
+    console.log('elCanvasContainer.offsetWidth:', elCanvasContainer.offsetWidth)
+    console.log('elCanvasContainer.offsetHeight:', elCanvasContainer.offsetHeight)
     gElCanvas.width = elCanvasContainer.offsetWidth
     gElCanvas.height = elCanvasContainer.offsetHeight
     renderMeme()

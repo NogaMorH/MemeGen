@@ -18,3 +18,12 @@ function onImgSelect(imgId) {
     openMemeEditor()
 }
 
+function onOpenMenu() {
+    document.body.classList.add('menu-opened')
+}
+
+function onCloseMenu() {
+    document.body.classList.remove('menu-opened')
+}
+
+

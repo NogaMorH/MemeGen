@@ -1,12 +1,4 @@
-.meme-editor {
-    background-color: var(--clr2);
-}
-
 .meme-container {
-    width: 60%;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr 10%;
-    background-color: var(--clr2);
     font-size: 0.875rem;
 }
 
@@ -16,11 +8,10 @@
     background-color: inherit;
     border: none;
     font-family: inherit;
-    color: inherit;
     padding-top: 25px;
-    margin-inline-end: auto;
     padding-left: 1.571428571428571em;
     position: relative;
+    transition: color .2s;
 }
 
 .meme-container .small-btn::before {
@@ -33,10 +24,80 @@
 .meme-container .canvas-container {
     justify-self: center;
     align-self: center;
-    height: 600px;
-    width: 600px;
+    width: 300px;
+    height: 300px;
 }
 
 .meme-container canvas {
     border-radius: 10px;
+}
+
+@media (max-width: 800px) {
+    .meme-editor {
+        background-color: var(--clr4);
+        flex-direction: column;
+        display: flex;
+        flex-grow: 1;
+    }
+
+    .meme-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .meme-container .small-btn {
+        position: absolute;
+        top: -7px;
+        left: 14px;
+        color: var(--clr8);
+    }
+
+    .meme-container .small-btn:hover {
+        color: var(--clr6);
+    }
+}
+
+@media (min-width: 800px) {
+    .meme-editor {
+        background-color: var(--clr2);
+    }
+
+    .meme-container {
+        display: grid;
+        width: 60%;
+        background-color: var(--clr2);
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr 10%;
+    }
+
+    .meme-container .small-btn {
+        color: inherit;
+        margin-inline-end: auto;
+    }
+
+    .meme-container .small-btn:hover {
+        color: var(--clr1);
+    }
+
+    .meme-container .canvas-container {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .meme-container .canvas-container {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .meme-container .canvas-container {
+        width: 600px;
+        height: 600px;
+    }
 }

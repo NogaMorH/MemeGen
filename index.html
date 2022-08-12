@@ -19,15 +19,17 @@
                     <li><button class="btn nav-btn">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
                 </ul>
+                <button class="btn close-btn" onclick="onCloseMenu()">x</button>
             </nav>
+            <button class="btn toggle-menu-btn" onclick="onOpenMenu()">☰</button>
         </div>
     </header>
     <section class="gallery" hidden>
         <main class="images-container main-layout grid"></main>
     </section>
-    <section class="meme-editor main-layout" hidden>
-        <div class="meme-container grid">
-            <button class="btn small-btn">Back to gallery</button>
+    <section class="meme-editor main-layout flex" hidden>
+        <div class="meme-container">
+            <button class="btn small-btn" onclick="onCloseMemeEditor()">Back to gallery</button>
             <div class="canvas-container">
                 <canvas width="400" height="400" class="meme-canvas"></canvas>
             </div>

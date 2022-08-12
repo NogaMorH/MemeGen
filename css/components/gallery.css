@@ -3,9 +3,8 @@
 }
 
 .gallery .images-container {
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 25px;
-    row-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
     margin-top: 30px;
 }
 
@@ -16,4 +15,24 @@
 .gallery .images-container>img:hover {
     outline: 3px solid var(--clr1);
     opacity: .8;
+}
+
+@media (min-width: 420px) {
+    .gallery .images-container {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    }
+}
+
+@media (min-width: 550px) {
+    .gallery .images-container {
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .gallery .images-container {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 25px;
+    }
 }

@@ -1,6 +1,6 @@
 .control-box-container {
-    width: 40%;
     background-color: var(--clr7);
+    height: 360px;
 }
 
 .control-box {
@@ -40,6 +40,10 @@
     margin: 6px;
 }
 
+.control-box .control-btn:hover {
+    opacity: .8;
+}
+
 .control-box .text-editor-btns>* {
     margin: 4px;
 }
@@ -56,4 +60,27 @@
 
 .control-box input[name="text-line-input"]:focus-visible {
     outline: none;
+}
+
+@media (max-width: 450px) {
+    .control-box-container {
+        width: 100%;
+    }
+
+    .control-box .control-box-header {
+        margin-bottom: 25px;
+    }
+}
+
+@media (min-width: 450px) {
+    .control-box-container {
+        height: 380px;
+    }
+}
+
+@media (min-width: 800px) {
+    .control-box-container {
+        width: 40%;
+        height: auto;
+    }
 }

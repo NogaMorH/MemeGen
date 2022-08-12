@@ -1,6 +1,5 @@
 .main-header {
     background-color: var(--clr2);
-    box-shadow: 0px 1px 0px var(--clr5);
     z-index: 10;
 }
 
@@ -10,27 +9,115 @@
 
 .main-header .logo {
     width: 152px;
-    padding: 9px 20px 9px 0px;
-}
-
-.main-header .main-nav-list>li:not(:last-child) {
-    margin-inline-end: 50px;
+    padding: 15px 20px 15px 0px;
 }
 
 .main-header .nav-btn {
     background-color: inherit;
     border: none;
     font-family: roboto-medium, sans-serif;
-    color: inherit;
-    line-height: 1.1;
-    line-height: 1.171875;
-    font-size: 1rem;
-    padding: 0;
-    margin: 15px 0px;
-    transition: color .2s;
 }
 
+.main-header .main-nav .close-btn {
+    display: none;
+}
 
-.main-header .nav-btn:hover {
-    color: var(--clr1);
+/* mobile only */
+@media (max-width: 550px) {
+    body.menu-opened {
+        overflow: hidden;
+    }
+
+    .main-header .toggle-menu-btn {
+        border: none;
+        background-color: inherit;
+        font-size: 1.5rem;
+        color: var(--clr8);
+    }
+
+    .main-header .main-nav {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--clr1);
+        transform: translateY(-100vh);
+        transition: transform .6s;
+    }
+
+    body.menu-opened .main-header .main-nav {
+        transform: translateY(0);
+    }
+
+    .main-header .main-nav-list {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .main-header .nav-btn {
+        color: var(--clr2);
+        padding: 20px;
+        font-size: 1.5rem;
+        line-height: 1.166666666666667;
+        transition: box-shadow .2s;
+    }
+
+    .main-header .nav-btn:hover {
+        box-shadow: 0px 1px 0px var(--clr2);
+    }
+
+    .main-header .main-nav-list>li:not(:last-child) {
+        margin-bottom: 70px;
+    }
+
+    .main-header .main-nav .close-btn {
+        display: inline;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border: none;
+        color: var(--clr2);
+        background-color: inherit;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    .main-header .main-nav .close-btn:hover {
+        opacity: .7;
+    }
+}
+
+@media (min-width: 550px) {
+    .main-header {
+        box-shadow: 0px 1px 0px var(--clr5);
+    }
+
+    .main-header .main-logo {
+        padding: 11px 20px 11px 0px;
+    }
+
+    .main-header .main-nav-list>li:not(:last-child) {
+        margin-inline-end: 50px;
+    }
+
+    .main-header .toggle-menu-btn {
+        display: none;
+    }
+
+    .main-header .nav-btn {
+        line-height: 1.1875;
+        font-size: 1rem;
+        margin: 15px 0px;
+        color: inherit;
+        transition: color .2s;
+        padding: 0;
+
+    }
+
+    .main-header .nav-btn:hover {
+        color: var(--clr1);
+    }
 }
