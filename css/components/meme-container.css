@@ -24,8 +24,8 @@
 .meme-container .canvas-container {
     justify-self: center;
     align-self: center;
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 }
 
 .meme-container canvas {
@@ -59,6 +59,13 @@
     }
 }
 
+@media (min-width: 400px) {
+    .meme-container .canvas-container {
+        width: 300px;
+        height: 300px;
+    }
+}
+
 @media (min-width: 800px) {
     .meme-editor {
         background-color: var(--clr2);
@@ -86,6 +93,7 @@
         height: 400px;
     }
 }
+
 
 @media (min-width: 1000px) {
     .meme-container .canvas-container {

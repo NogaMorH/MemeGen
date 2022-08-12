@@ -1,6 +1,6 @@
 .control-box-container {
     background-color: var(--clr7);
-    height: 360px;
+    height: 350px;
 }
 
 .control-box {
@@ -72,11 +72,11 @@
     }
 }
 
-@media (min-width: 450px) {
+/* @media (min-width: 450px) {
     .control-box-container {
         height: 380px;
     }
-}
+} */
 
 @media (min-width: 800px) {
     .control-box-container {
