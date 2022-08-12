@@ -42,7 +42,7 @@
         left: 0;
         right: 0;
         background-color: var(--clr1);
-        transform: translateY(-160vh);
+        transform: translateY(-100vh);
         transition: transform .6s;
     }
 
