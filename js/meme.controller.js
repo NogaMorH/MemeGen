@@ -66,9 +66,8 @@ function drawTextLines() {
     // font.load().then(() => {
     //     document.fonts.add(font)
     // const nums = [1, 2, 3]
-    console.log('meme.lines:', meme.lines)
     meme.lines.forEach((textLine, idx) => {
-        console.log('idx:', idx)
+        if (!textLine.height) updateLineHeight(idx)
         const { text, size, align, color } = textLine
         const { startX, startY } = getTextPosition(align, idx)
         drawText(text, startX, startY, size, align, color)
@@ -79,7 +78,9 @@ function drawTextLines() {
 // }
 
 function getTextPosition(align, lineIdx) {
-    const startY = setLineHeight(lineIdx)
+    const meme = getMeme()
+    const currLine = meme.lines[lineIdx]
+    const startY = currLine.height
     let startX
     if (align === 'center') startX = gElCanvas.width / 2
     else if (align === 'left') startX = 20
@@ -102,8 +103,8 @@ function drawText(text, x, y, fontSize = '50', textAlign = 'center', color = 'bl
 
 function highlightSelectedLine() {
     const meme = getMeme()
-    const lineHeight = setLineHeight(meme.selectedLineIdx)
     const selectedLine = meme.lines[meme.selectedLineIdx]
+    const lineHeight = selectedLine.height
     const textMeasured = gCtx.measureText(`${selectedLine.text}`)
     const textWidth = textMeasured.width
     const textHeight = selectedLine.size * 1.286
@@ -123,22 +124,6 @@ function drawTextBoxBorder(x, y, width, height) {
     gCtx.lineWidth = 1
     gCtx.stroke()
     gCtx.closePath()
-}
-
-function setLineHeight(lineIdx) {
-    const meme = getMeme()
-    const lineSpace = 70
-    var textLineHeight
-    if (meme.lines.length === 1) textLineHeight = lineSpace
-    else if (meme.lines.length === 2) {
-        if (lineIdx === 0) textLineHeight = lineSpace
-        else textLineHeight = gElCanvas.height - lineSpace
-    } else {
-        if (lineIdx === 0) textLineHeight = 70
-        else if (lineIdx === meme.lines.length - 1) textLineHeight = gElCanvas.height - lineSpace
-        else textLineHeight = gElCanvas.height / 2
-    }
-    return textLineHeight
 }
 
 function onSetLineText(text) {
@@ -207,7 +192,40 @@ function onAddLine() {
     addLine()
     setTextSize(getDefaultTextSize())
     renderMeme()
+    renderTextInput()
 }
+
+function onRemoveLine() {
+    removeLine()
+    renderMeme()
+    renderTextInput()
+    return textLineHeight
+}
+
+function updateLineHeight(lineIdx) {
+    let lineHeight
+    const lineSpace = 70
+    const meme = getMeme()
+    const linesLength = meme.lines.length
+    if (lineIdx === 0) lineHeight = lineSpace
+    else if (linesLength === 2) lineHeight = gElCanvas.height - lineSpace
+    else {
+        if (lineIdx === linesLength - 1) lineHeight = gElCanvas.height - lineSpace
+        else lineHeight = gElCanvas.height / 2
+    }
+    setLineHeight(lineIdx, lineHeight)
+}
+
+function onLineUp() {
+    moveLineUp()
+    renderMeme()
+}
+
+function onLineDown() {
+    moveLineDown()
+    renderMeme()
+}
+
 // function clearCanvas() {
 //     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 // }

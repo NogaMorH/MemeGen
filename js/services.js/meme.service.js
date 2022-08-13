@@ -7,13 +7,15 @@ var gMeme = {
         text: 'Enter text here1',
         size: null,
         align: 'center',
-        color: 'black'
+        color: 'black',
+        height: null
     },
     {
         text: 'Enter text here3',
         size: null,
         align: 'center',
-        color: 'black'
+        color: 'black',
+        height: null
     }]
 }
 
@@ -62,15 +64,41 @@ function centerText() {
 }
 
 function addLine() {
-    const newLine = {
-        text: 'Enter text here2',
-        size: null,
-        align: 'center',
-        color: 'black'
+    const newLine = _createNewLine()
+    const linesLength = gMeme.lines.length
+    let newLineIdx
+    if (!linesLength) {
+        gMeme.lines.push(newLine)
+        newLineIdx = 0
+    } else if (linesLength === 1 || linesLength === 2) {
+        newLineIdx = 1
+        gMeme.lines.splice(newLineIdx, 0, newLine)
+    } else {
+        newLineIdx = linesLength - 2
+        gMeme.lines.splice(newLineIdx, 0, newLine)
     }
-    console.log('gMeme.lines.length:', gMeme.lines.length)
-    gMeme.lines.splice(gMeme.lines.length - 1, 0, newLine)
-    console.log('gMeme.lines:', gMeme.lines)
+    gMeme.selectedLineIdx = newLineIdx
+}
+
+function removeLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    switchLines()
+}
+
+function setLineHeight(lineIdx, lineHeight) {
+    const currLine = gMeme.lines[lineIdx]
+    console.log('currLine:', currLine)
+    currLine.height = lineHeight
+}
+
+function moveLineUp() {
+    const currLine = gMeme.lines[gMeme.selectedLineIdx]
+    currLine.height--
+}
+
+function moveLineDown() {
+    const currLine = gMeme.lines[gMeme.selectedLineIdx]
+    currLine.height++
 }
 
 function getMeme() {
@@ -79,4 +107,14 @@ function getMeme() {
 
 function setTextSize(defaultTextSize) {
     gMeme.lines.forEach(line => line.size = defaultTextSize)
+}
+
+function _createNewLine() {
+    return {
+        text: 'Enter text here2',
+        size: null,
+        align: 'center',
+        color: 'black',
+        height: null
+    }
 }

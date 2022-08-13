@@ -33,17 +33,21 @@
     border-bottom: 1px solid var(--clr9);
 }
 
-.control-box .control-box-header .control-btn {
-    width: 40px;
+.control-box .control-box-header .control-btn:not(.remove-line-btn) {
+    font-size: 1.35rem;
+}
+
+.control-box .remove-line-btn {
+    font-size: 1.85rem;
 }
 
 .control-box .text-editor .control-btn {
-    width: 50px;
+    width: 45px;
     margin: 6px;
 }
 
 .control-box .control-btn:hover {
-    opacity: .8;
+    opacity: .7;
 }
 
 .control-box .text-editor-btns>* {

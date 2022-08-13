@@ -15,7 +15,7 @@
             <img src="img/LOGO.png" class="logo" alt="MemeGen logo" />
             <nav class="main-nav">
                 <ul class="main-nav-list clean-list flex">
-                    <li><button class="btn nav-btn">Gallery</button></li>
+                    <li><button class="btn nav-btn" onclick="closeMemeEditor()">Gallery</button></li>
                     <li><button class="btn nav-btn">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
                 </ul>
@@ -39,11 +39,20 @@
                 <header class="control-box-header flex space-between">
                     <h3 class="control-box-header">Edit text lines</h3>
                     <div class="line-btns flex">
-                        <button class="btn control-btn" onclick="onAddLine()">
-                            <img src="icons/add.png" alt="add line" />
+                        <button class="btn control-btn" onclick="onLineUp()" aria-label="line up">
+                            ↑
+                        </button>
+                        <button class="btn control-btn" onclick="onLineDown()" aria-label="line up">
+                            ↓
                         </button>
                         <button class="btn control-btn" onclick="onSwitchLine()">
-                            <img src="icons/switch-line.png" alt="switch line" />
+                            ↑↓
+                        </button>
+                        <button class="btn control-btn" onclick="onAddLine()">
+                            +
+                        </button>
+                        <button class="btn control-btn remove-line-btn" onclick="onRemoveLine()">
+                            🗑
                         </button>
                     </div>
                 </header>
