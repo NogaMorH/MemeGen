@@ -16,7 +16,7 @@
             <nav class="main-nav">
                 <ul class="main-nav-list clean-list flex">
                     <li><button class="btn nav-btn" onclick="closeMemeEditor()">Gallery</button></li>
-                    <li><button class="btn nav-btn">Memes</button></li>
+                    <li><button class="btn nav-btn" onclick="onOpenSavedMemes()">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
                 </ul>
                 <button class="btn close-btn" onclick="onCloseMenu()">x</button>
@@ -84,10 +84,12 @@
                             <img src="icons/align-to-right.png" alt="align to right" onclick="onAlignRight()" />
                         </button>
                     </div>
-                    <input type="text" name="text-line-input" placeholder="Edit text line"
-                        oninput="onSetLineText(this.value)" />
+                    <input type="text" name="text-line-input" oninput="onSetLineText(this.value)" />
                 </div>
-                <a href="#" class="btn round-btn download-link" download="" onclick="onDownloadMeme()">Download</a>
+                <div class="btns-container">
+                    <a href="#" class="btn round-btn download-link" download="" onclick="onDownloadMeme()">Download</a>
+                    <button class="btn round-btn" onclick="onSaveMeme()">Save</button>
+                </div>
             </div>
         </div>
     </section>

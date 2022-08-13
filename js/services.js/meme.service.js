@@ -1,33 +1,40 @@
 'use strict'
 
+const STORAGE_KEY = 'memesDB'
+const gDefaultLines = [{
+    text: 'Enter text here1',
+    size: null,
+    align: 'center',
+    borderColor: 'black',
+    fillColor: 'white',
+    height: null
+},
+{
+    text: 'Enter text here3',
+    size: null,
+    align: 'center',
+    borderColor: 'black',
+    fillColor: 'white',
+    height: null
+}]
+
 var gMeme = {
-    selectedImgId: '1',
+    selectedImgId: null,
     selectedLineIdx: 0,
-    lines: [{
-        text: 'Enter text here1',
-        size: null,
-        align: 'center',
-        borderColor: 'black',
-        fillColor: 'white',
-        height: null
-    },
-    {
-        text: 'Enter text here3',
-        size: null,
-        align: 'center',
-        borderColor: 'black',
-        fillColor: 'white',
-        height: null
-    }]
+    lines: JSON.parse(JSON.stringify(gDefaultLines))
 }
+
+var gSavedMemes = _getSavedMemes()
 
 function setLineText(text) {
     const currLine = gMeme.lines[gMeme.selectedLineIdx]
     currLine.text = text
 }
 
-function setImg(imgId) {
+function setInitialMeme(imgId) {
     gMeme.selectedImgId = imgId
+    gMeme.selectedLineIdx = 0
+    gMeme.lines = JSON.parse(JSON.stringify(gDefaultLines))
 }
 
 function setTextBorderColor(color) {
@@ -112,6 +119,12 @@ function getMeme() {
     return gMeme
 }
 
+function saveMeme() {
+    const memeToSave = JSON.parse(JSON.stringify(gMeme))
+    gSavedMemes.push(memeToSave)
+    saveToStorage(STORAGE_KEY, gSavedMemes)
+}
+
 function setTextSize(defaultTextSize) {
     gMeme.lines.forEach(line => line.size = defaultTextSize)
 }
@@ -125,4 +138,11 @@ function _createNewLine() {
         fillColor: 'white',
         height: null
     }
+}
+
+function _getSavedMemes() {
+    let savedMemes = loadFromStorage(STORAGE_KEY)
+    if (!savedMemes || !savedMemes.length) savedMemes = []
+    console.log('savedMemes:', savedMemes)
+    return savedMemes
 }

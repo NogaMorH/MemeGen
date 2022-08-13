@@ -263,6 +263,10 @@ function changeDownloadLink() {
     elLink.download = 'my-meme.png'
 }
 
+function onSaveMeme() {
+    saveMeme()
+}
+
 // function clearCanvas() {
 //     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 // }

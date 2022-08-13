@@ -3,7 +3,7 @@
 }
 
 .control-box {
-    margin: 0px 30px 50px;
+    margin: 0px 10px 50px;
 }
 
 .control-box .control-box-header {
@@ -53,10 +53,12 @@
 
 .control-box input[name="fill-color-Picker"] {
     opacity: 0;
+    position: absolute;
 }
 
 .control-box input[name="border-color-Picker"] {
     opacity: 0;
+    position: absolute;
 }
 
 .control-box .color-picker-btn {
@@ -83,8 +85,13 @@
     outline: none;
 }
 
+.control-box .btns-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .control-box .round-btn {
-    display: block;
+    display: inline;
     background-color: var(--clr1);
     font-size: 1.125rem;
     text-decoration: none;
@@ -92,15 +99,27 @@
     font-family: roboto-medium, sans-serif;
     padding: 0.9375em 1.875em;
     border-radius: 2em;
-    margin: 20px auto 10px;
+    margin: 20px 0 10px;
     text-align: center;
     max-width: 11.25em;
+    border: none;
 }
 
 @media (min-width: 500px) {
+
     .control-box .round-btn {
-        margin: 20px 0 30px auto;
+        margin-bottom: 30px;
     }
+
+    .control-box .btns-container>*:not(:last-child) {
+        margin-inline-end: 10px;
+    }
+
+    .control-box .btns-container {
+        justify-content: flex-end;
+        margin-inline-start: auto;
+    }
+
 }
 
 @media (min-width: 800px) {

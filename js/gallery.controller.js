@@ -14,7 +14,7 @@ function renderGallery() {
 }
 
 function onImgSelect(imgId) {
-    setImg(imgId)
+    setInitialMeme(imgId)
     openMemeEditor()
 }
 
@@ -26,4 +26,11 @@ function onCloseMenu() {
     document.body.classList.remove('menu-opened')
 }
 
+function onOpenSavedMemes() {
+    renderSavedMemes()
+}
+
+function renderSavedMemes() {
+    const elImagesContainer = document.querySelector('.images-container')
+}
 
