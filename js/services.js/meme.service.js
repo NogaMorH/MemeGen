@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'memesDB'
 const gDefaultLines = [{
-    text: 'Enter text here1',
+    text: 'Enter text here',
     size: null,
     align: 'center',
     borderColor: 'black',
@@ -10,7 +10,7 @@ const gDefaultLines = [{
     height: null
 },
 {
-    text: 'Enter text here3',
+    text: 'Enter text here',
     size: null,
     align: 'center',
     borderColor: 'black',
@@ -93,6 +93,7 @@ function addLine() {
         gMeme.lines.splice(newLineIdx, 0, newLine)
     }
     gMeme.selectedLineIdx = newLineIdx
+    console.log('gMeme.lines:', gMeme.lines)
 }
 
 function removeLine() {
@@ -130,14 +131,7 @@ function setTextSize(defaultTextSize) {
 }
 
 function _createNewLine() {
-    return {
-        text: 'Enter text here2',
-        size: null,
-        align: 'center',
-        borderColor: 'black',
-        fillColor: 'white',
-        height: null
-    }
+    return gDefaultLines[0]
 }
 
 function _getSavedMemes() {

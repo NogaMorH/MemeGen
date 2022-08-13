@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body class="flex" onload="onInitGallery()">
+<body class="flex" onload="initGallery()">
     <header class="main-header">
         <div class="header-content main-layout flex space-between">
             <img src="img/LOGO.png" class="logo" alt="MemeGen logo" />
             <nav class="main-nav">
                 <ul class="main-nav-list clean-list flex">
-                    <li><button class="btn nav-btn" onclick="closeMemeEditor()">Gallery</button></li>
+                    <li><button class="btn nav-btn" onclick="onOpenGallery()">Gallery</button></li>
                     <li><button class="btn nav-btn" onclick="onOpenSavedMemes()">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
                 </ul>
-                <button class="btn close-btn" onclick="onCloseMenu()">x</button>
+                <button class="btn close-btn" onclick="closeMenu()">x</button>
             </nav>
-            <button class="btn toggle-menu-btn" onclick="onOpenMenu()">☰</button>
+            <button class="btn toggle-menu-btn" onclick="openMenu()">☰</button>
         </div>
     </header>
     <section class="gallery" hidden>

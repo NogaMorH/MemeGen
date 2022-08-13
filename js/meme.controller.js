@@ -72,7 +72,9 @@ function drawTextLines() {
     // font.load().then(() => {
     //     document.fonts.add(font)
     // const nums = [1, 2, 3]
+    console.log('meme.lines:', meme.lines)
     meme.lines.forEach((textLine, idx) => {
+        console.log('idx:', idx)
         if (!textLine.height) updateLineHeight(idx)
         const { text, size, align, borderColor, fillColor } = textLine
         const { startX, startY } = getTextPosition(align, idx)

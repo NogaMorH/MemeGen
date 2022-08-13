@@ -1,7 +1,7 @@
 'use strict'
 
 
-function onInitGallery() {
+function initGallery() {
     closeMemeEditor()
     renderGallery()
 }
@@ -18,11 +18,11 @@ function onImgSelect(imgId) {
     openMemeEditor()
 }
 
-function onOpenMenu() {
+function openMenu() {
     document.body.classList.add('menu-opened')
 }
 
-function onCloseMenu() {
+function closeMenu() {
     document.body.classList.remove('menu-opened')
 }
 
@@ -32,5 +32,11 @@ function onOpenSavedMemes() {
 
 function renderSavedMemes() {
     const elImagesContainer = document.querySelector('.images-container')
+}
+
+function onOpenGallery() {
+    closeMemeEditor()
+    closeMenu()
+    oninput()
 }
 

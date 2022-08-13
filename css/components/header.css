@@ -35,6 +35,10 @@
         color: var(--clr8);
     }
 
+    body.menu-opened .main-header .main-nav {
+        transform: translateY(0);
+    }
+
     .main-header .main-nav {
         position: fixed;
         top: 0;
@@ -44,10 +48,6 @@
         background-color: var(--clr1);
         transform: translateY(-100vh);
         transition: transform .6s;
-    }
-
-    body.menu-opened .main-header .main-nav {
-        transform: translateY(0);
     }
 
     .main-header .main-nav-list {
