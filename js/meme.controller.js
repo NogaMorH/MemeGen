@@ -2,6 +2,7 @@
 
 const gElCanvas = document.querySelector('.meme-canvas')
 const gCtx = gElCanvas.getContext('2d')
+var gIsDownload = false
 
 function openMemeEditor() {
     const elGallery = document.querySelector('.gallery')
@@ -48,9 +49,14 @@ function addListeners() {
 function drawMeme(imgUrl) {
     const img = new Image()
     img.src = imgUrl
-    img.onload = () => {
+    if (gIsDownload) {
         drawImg(img)
         drawTextLines()
+    } else {
+        img.onload = () => {
+            drawImg(img)
+            drawTextLines()
+        }
     }
 }
 
@@ -68,10 +74,10 @@ function drawTextLines() {
     // const nums = [1, 2, 3]
     meme.lines.forEach((textLine, idx) => {
         if (!textLine.height) updateLineHeight(idx)
-        const { text, size, align, color } = textLine
+        const { text, size, align, borderColor, fillColor } = textLine
         const { startX, startY } = getTextPosition(align, idx)
-        drawText(text, startX, startY, size, align, color)
-        if (idx === meme.selectedLineIdx) highlightSelectedLine()
+        drawText(text, startX, startY, size, align, borderColor, fillColor)
+        if (idx === meme.selectedLineIdx && !gIsDownload) highlightSelectedLine()
     })
 }
 // )
@@ -88,15 +94,15 @@ function getTextPosition(align, lineIdx) {
     return { startX, startY }
 }
 
-function drawText(text, x, y, fontSize = '50', textAlign = 'center', color = 'black') {
+function drawText(text, x, y, fontSize, textAlign, borderColor, fillColor) {
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = textAlign
     gCtx.lineWidth = 2
     gCtx.font = `${fontSize}px impact, sans-serif`
-    gCtx.fillStyle = 'white'
+    gCtx.fillStyle = fillColor
+    gCtx.strokeStyle = borderColor
     gCtx.fillText(text, x, y)
-    gCtx.strokeStyle = `${color}`
     gCtx.strokeText(text, x, y)
     gCtx.closePath()
 }
@@ -131,8 +137,13 @@ function onSetLineText(text) {
     renderMeme()
 }
 
-function onSetTextColor(color) {
-    setTextColor(color)
+function onSetTextBorderColor(color) {
+    setTextBorderColor(color)
+    renderMeme()
+}
+
+function onSetTextFillColor(color) {
+    setTextFillColor(color)
     renderMeme()
 }
 
@@ -189,8 +200,10 @@ function getDefaultTextSize() {
 }
 
 function onAddLine() {
+    const gMeme = getMeme()
     addLine()
     setTextSize(getDefaultTextSize())
+    updateLineHeight(gMeme.selectedLineIdx)
     renderMeme()
     renderTextInput()
 }
@@ -199,7 +212,6 @@ function onRemoveLine() {
     removeLine()
     renderMeme()
     renderTextInput()
-    return textLineHeight
 }
 
 function updateLineHeight(lineIdx) {
@@ -217,13 +229,38 @@ function updateLineHeight(lineIdx) {
 }
 
 function onLineUp() {
+    // prevent drawing text out of the canvas
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    const textHeight = selectedLine.size * 1.286
+    if (selectedLine.height <= textHeight / 2) return
     moveLineUp()
     renderMeme()
 }
 
 function onLineDown() {
+    // prevent drawing text out of the canvas
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    const textHeight = selectedLine.size * 1.286
+    if (selectedLine.height >= gElCanvas.height - (textHeight / 2)) return
     moveLineDown()
     renderMeme()
+}
+
+function onDownloadMeme() {
+    gIsDownload = true
+    renderMeme()
+    changeDownloadLink()
+    gIsDownload = false
+    renderMeme()
+}
+
+function changeDownloadLink() {
+    const elLink = document.querySelector('.download-link')
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'my-meme.png'
 }
 
 // function clearCanvas() {

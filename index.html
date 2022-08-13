@@ -64,7 +64,16 @@
                         <button class="btn control-btn" onclick="onIncreaseFontSize()">
                             <img src="icons/increase font-icon.png" alt="increase font size" />
                         </button>
-                        <input type="color" name="color-Picker" oninput="onSetTextColor(this.value)" />
+                        <label class="color-picker-container">
+                            <input type="color" name="fill-color-Picker" oninput="onSetTextFillColor(this.value)" />
+                            <img class="btn color-picker-btn" src="icons/bucket-icon-png-18.jpg"
+                                alt="choose fill color" />
+                        </label>
+                        <label class="color-picker-container">
+                            <input type="color" name="border-color-Picker" oninput="onSetTextBorderColor(this.value)" />
+                            <img class="btn color-picker-btn" src="icons/paint-board-and-brush.png"
+                                alt="choose border color" />
+                        </label>
                         <button class="btn control-btn">
                             <img src="icons/align-to-left.png" alt="align to left" onclick="onAlignLeft()" />
                         </button>
@@ -78,6 +87,7 @@
                     <input type="text" name="text-line-input" placeholder="Edit text line"
                         oninput="onSetLineText(this.value)" />
                 </div>
+                <a href="#" class="btn round-btn download-link" download="" onclick="onDownloadMeme()">Download</a>
             </div>
         </div>
     </section>
