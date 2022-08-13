@@ -68,13 +68,7 @@ function drawImg(img) {
 
 function drawTextLines() {
     const meme = getMeme()
-    // const font = new FontFace('alumni', 'url(../fonts/alumni/AlumniSansCollegiateOne-Regular.ttf)')
-    // font.load().then(() => {
-    //     document.fonts.add(font)
-    // const nums = [1, 2, 3]
-    console.log('meme.lines:', meme.lines)
     meme.lines.forEach((textLine, idx) => {
-        console.log('idx:', idx)
         if (!textLine.height) updateLineHeight(idx)
         const { text, size, align, borderColor, fillColor } = textLine
         const { startX, startY } = getTextPosition(align, idx)
@@ -82,8 +76,6 @@ function drawTextLines() {
         if (idx === meme.selectedLineIdx && !gIsDownload) highlightSelectedLine()
     })
 }
-// )
-// }
 
 function getTextPosition(align, lineIdx) {
     const meme = getMeme()
@@ -269,7 +261,4 @@ function onSaveMeme() {
     saveMeme()
 }
 
-// function clearCanvas() {
-//     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-// }
 

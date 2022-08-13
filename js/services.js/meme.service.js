@@ -24,7 +24,7 @@ var gMeme = {
     lines: JSON.parse(JSON.stringify(gDefaultLines))
 }
 
-var gSavedMemes = _getSavedMemes()
+var gSavedMemes = getSavedMemes()
 
 function setLineText(text) {
     const currLine = gMeme.lines[gMeme.selectedLineIdx]
@@ -93,7 +93,6 @@ function addLine() {
         gMeme.lines.splice(newLineIdx, 0, newLine)
     }
     gMeme.selectedLineIdx = newLineIdx
-    console.log('gMeme.lines:', gMeme.lines)
 }
 
 function removeLine() {
@@ -134,9 +133,8 @@ function _createNewLine() {
     return gDefaultLines[0]
 }
 
-function _getSavedMemes() {
+function getSavedMemes() {
     let savedMemes = loadFromStorage(STORAGE_KEY)
     if (!savedMemes || !savedMemes.length) savedMemes = []
-    console.log('savedMemes:', savedMemes)
     return savedMemes
 }
