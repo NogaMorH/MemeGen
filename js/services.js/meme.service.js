@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'memesDB'
 const gDefaultLines = [{
-    text: 'Enter text here',
+    text: 'Enter text',
     size: null,
     align: 'center',
     borderColor: 'black',
@@ -10,7 +10,7 @@ const gDefaultLines = [{
     height: null
 },
 {
-    text: 'Enter text here',
+    text: 'Enter text',
     size: null,
     align: 'center',
     borderColor: 'black',
@@ -21,14 +21,14 @@ const gDefaultLines = [{
 var gMeme = {
     selectedImgId: null,
     selectedLineIdx: 0,
+    url: null,
     lines: JSON.parse(JSON.stringify(gDefaultLines))
 }
 
 var gSavedMemes = getSavedMemes()
 
 function setLineText(text) {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.text = text
+    getSelectedLine().text = text
 }
 
 function setInitialMeme(imgId) {
@@ -38,23 +38,17 @@ function setInitialMeme(imgId) {
 }
 
 function setTextBorderColor(color) {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.borderColor = color
+    getSelectedLine().borderColor = color
 }
 
 function setTextFillColor(color) {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.fillColor = color
+    getSelectedLine().fillColor = color
 }
 
-function increaseFontSize() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.size++
-}
-
-function decreaseFontSize() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.size--
+function changeFontSize(isIncrease) {
+    const selectedLine = getSelectedLine()
+    if (isIncrease) selectedLine.size++
+    else selectedLine.size--
 }
 
 function switchLines() {
@@ -63,18 +57,15 @@ function switchLines() {
 }
 
 function alignLeft() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.align = 'left'
+    getSelectedLine().align = 'left'
 }
 
 function alignRight() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.align = 'right'
+    getSelectedLine().align = 'right'
 }
 
 function centerText() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.align = 'center'
+    getSelectedLine().align = 'center'
 }
 
 function addLine() {
@@ -92,6 +83,7 @@ function addLine() {
         newLineIdx = linesLength - 2
         gMeme.lines.splice(newLineIdx, 0, newLine)
     }
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
     gMeme.selectedLineIdx = newLineIdx
 }
 
@@ -105,21 +97,19 @@ function setLineHeight(lineIdx, lineHeight) {
     currLine.height = lineHeight
 }
 
-function moveLineUp() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.height = currLine.height - 15
-}
-
-function moveLineDown() {
-    const currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.height = currLine.height + 15
+function moveLine(isUp) {
+    const moveSpace = 15
+    const selectedLine = getSelectedLine()
+    if (isUp) selectedLine.height = selectedLine.height - moveSpace
+    else selectedLine.height = selectedLine.height + moveSpace
 }
 
 function getMeme() {
     return gMeme
 }
 
-function saveMeme() {
+function saveMeme(url) {
+    gMeme.url = url
     const memeToSave = JSON.parse(JSON.stringify(gMeme))
     gSavedMemes.push(memeToSave)
     saveToStorage(STORAGE_KEY, gSavedMemes)
@@ -130,11 +120,22 @@ function setTextSize(defaultTextSize) {
 }
 
 function _createNewLine() {
-    return gDefaultLines[0]
+    return {
+        text: 'Enter text',
+        size: null,
+        align: 'center',
+        borderColor: 'black',
+        fillColor: 'white',
+        height: null
+    }
 }
 
 function getSavedMemes() {
     let savedMemes = loadFromStorage(STORAGE_KEY)
     if (!savedMemes || !savedMemes.length) savedMemes = []
     return savedMemes
+}
+
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }

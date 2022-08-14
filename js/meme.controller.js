@@ -84,7 +84,7 @@ function getTextPosition(align, lineIdx) {
     let startX
     if (align === 'center') startX = gElCanvas.width / 2
     else if (align === 'left') startX = 20
-    else startX = startX = gElCanvas.width - 20
+    else startX = gElCanvas.width - 20
     return { startX, startY }
 }
 
@@ -141,13 +141,8 @@ function onSetTextFillColor(color) {
     renderMeme()
 }
 
-function onIncreaseFontSize() {
-    increaseFontSize()
-    renderMeme()
-}
-
-function onDecreaseFontSize() {
-    decreaseFontSize()
+function onChangeFontSize(isIncrease) {
+    changeFontSize(isIncrease)
     renderMeme()
 }
 
@@ -194,10 +189,10 @@ function getDefaultTextSize() {
 }
 
 function onAddLine() {
-    const gMeme = getMeme()
+    const { selectedLineIdx, lines } = getMeme()
     addLine()
     setTextSize(getDefaultTextSize())
-    updateLineHeight(gMeme.selectedLineIdx)
+    updateLineHeight(selectedLineIdx)
     renderMeme()
     renderTextInput()
 }
@@ -222,23 +217,15 @@ function updateLineHeight(lineIdx) {
     setLineHeight(lineIdx, lineHeight)
 }
 
-function onLineUp() {
-    // prevent drawing text out of the canvas
-    const meme = getMeme()
-    const selectedLine = meme.lines[meme.selectedLineIdx]
+function onMoveLine(isUp) {
+    const selectedLine = getSelectedLine()
     const textHeight = selectedLine.size * 1.286
-    if (selectedLine.height <= textHeight / 2) return
-    moveLineUp()
-    renderMeme()
-}
-
-function onLineDown() {
-    // prevent drawing text out of the canvas
-    const meme = getMeme()
-    const selectedLine = meme.lines[meme.selectedLineIdx]
-    const textHeight = selectedLine.size * 1.286
-    if (selectedLine.height >= gElCanvas.height - (textHeight / 2)) return
-    moveLineDown()
+    if (isUp) {
+        if (selectedLine.height <= textHeight / 2) return
+    } else {
+        if (selectedLine.height >= gElCanvas.height - (textHeight / 2)) return
+    }
+    moveLine(isUp)
     renderMeme()
 }
 
@@ -258,7 +245,8 @@ function changeDownloadLink() {
 }
 
 function onSaveMeme() {
-    saveMeme()
+    const url = gElCanvas.toDataURL()
+    saveMeme(url)
 }
 
 

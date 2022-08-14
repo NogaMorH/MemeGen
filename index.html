@@ -19,9 +19,9 @@
                     <li><button class="btn nav-btn" onclick="onOpenSavedMemes()">Memes</button></li>
                     <li><button class="btn nav-btn">About</button></li>
                 </ul>
-                <button class="btn close-btn" onclick="closeMenu()">x</button>
+                <button class="btn close-btn" onclick="onCloseMenu()">x</button>
             </nav>
-            <button class="btn toggle-menu-btn" onclick="openMenu()">☰</button>
+            <button class="btn toggle-menu-btn" onclick="onOpenMenu()">☰</button>
         </div>
     </header>
     <section class="gallery" hidden>
@@ -39,10 +39,10 @@
                 <header class="control-box-header flex space-between">
                     <h3 class="control-box-header">Edit text lines</h3>
                     <div class="line-btns flex">
-                        <button class="btn control-btn" onclick="onLineUp()" aria-label="line up">
+                        <button class="btn control-btn" onclick="onMoveLine(true)" aria-label="line up">
                             ↑
                         </button>
-                        <button class="btn control-btn" onclick="onLineDown()" aria-label="line up">
+                        <button class="btn control-btn" onclick="onMoveLine(false)" aria-label="line up">
                             ↓
                         </button>
                         <button class="btn control-btn" onclick="onSwitchLine()">
@@ -58,10 +58,10 @@
                 </header>
                 <div class="text-editor">
                     <div class="text-editor-btns">
-                        <button class="btn control-btn" onclick="onDecreaseFontSize()">
+                        <button class="btn control-btn" onclick="onChangeFontSize(false)">
                             <img src="icons/decrease font-icon.png" alt="decrease font size" />
                         </button>
-                        <button class="btn control-btn" onclick="onIncreaseFontSize()">
+                        <button class="btn control-btn" onclick="onChangeFontSize(true)">
                             <img src="icons/increase font-icon.png" alt="increase font size" />
                         </button>
                         <label class="color-picker-container">
